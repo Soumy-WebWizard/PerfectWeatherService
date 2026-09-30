@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weathern't™ — WEATHER DETECTOR PRO MAX ULTRA</title>
+    <meta name="description"
+        content="We detect weather so you don't have to. The world's most innovative, inaccurate, and emotionally unavailable meteorological suite.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="theme-default">
+
+    <!-- TOP MARQUEE TICKER (2012 / CORPORATE CHAOS) -->
+    <div class="top-marquee-container" id="topTicker">
+        <div class="marquee-tag">🚨 BREAKING ATMOSPHERE:</div>
+        <div class="marquee-content">
+            <span>☀️ Sun predicted to rise in east again tomorrow; local scientists file formal dispute</span>
+            <span>•</span>
+            <span>🌧️ 14 raindrops detected in transit; destination unspecified</span>
+            <span>•</span>
+            <span>💨 Wind is currently moving towards you unless you step to the side</span>
+            <span>•</span>
+            <span>🌡️ Barometric pressure is feeling slightly overwhelmed</span>
+            <span>•</span>
+            <span>🐦 Pigeon surveillance squadron reports: sky is still high up</span>
+            <span>•</span>
+            <span>⚠️ OZONE LAYER STATUS: Exists, but without enthusiasm</span>
+        </div>
+    </div>
+
+    <!-- HEADER / APP BAR -->
+    <header class="app-header">
+        <div class="brand-group">
+            <div class="brand-badge-wrapper">
+                <span class="logo-emoji">🌦️</span>
+                <div class="logo-text-col">
+                    <div class="logo-row">
+                        <span class="brand-name">Weathern't<span class="trademark">™</span></span>
+                        <span class="badge-vibe">v4.20-ENTERPRISE-HOTFIX</span>
+                    </div>
+                    <span class="badge-sub">Dept. of Ambiguous Meteorological Occurrences</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORPORATE & GOV STAMPS -->
+        <div class="header-badges-row">
+            <span class="gov-seal" title="Self-certified under no recognized authority">🛡️ ISO-9002-VIBES
+                CERTIFIED</span>
+            <span class="ai-badge" id="aiModelBadge">✨ QUANTUM NEURAL ATMO-GPT 4.0</span>
+            <span class="streak-badge" id="streakBadge" title="Click to claim meaningless points">🔥 STREAK: 3 CLOUD
+                COINS</span>
+        </div>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="soundToggleBtn" title="Toggle Bizarre Synthesizer Weather Audio">
+                <span id="soundIcon">🔊</span>
+                <span class="btn-label" id="soundLabel">Sound: Annoying</span>
+            </button>
+            <button class="icon-btn" id="themeWorseBtn" title="Make Visuals Worse">
+                <span>🎨</span>
+                <span class="btn-label">Worse Colors</span>
+            </button>
+            <button class="icon-btn" id="settingsBtn" title="Adjust Absurd Settings">
+                <span class="spin-gear">⚙️</span>
+                <span class="btn-label">Settings</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- SPONTANEOUS RANDOM LOADING MODAL (Spawns randomly or on demand) -->
+    <div class="random-sync-overlay" id="randomSyncOverlay">
+        <div class="random-sync-card">
+            <div class="sync-spinner"></div>
+            <h3 id="syncCardTitle">Syncing with cloud...</h3>
+            <p id="syncCardSub">(The literal sky cloud. Please hold your breath so air does not move.)</p>
+            <div class="sync-progress-bar">
+                <div class="sync-progress-fill" id="syncProgressFill"></div>
+            </div>
+            <button class="btn-micro" id="cancelSyncBtn">Cancel (May Anger Clouds)</button>
+        </div>
+    </div>
+
+    <!-- FLOATING NOTIFICATION TOAST STACK -->
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <!-- MAIN WRAPPER -->
+    <main class="main-container">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-decorative-blobs">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+            </div>
+
+            <div class="hero-inner">
+                <div class="title-pill">
+                    <span class="pulse-dot"></span>
+                    <span>OFFICIAL METEOROLOGICAL ILLUSION SUITE</span>
+                </div>
+
+                <h1 class="main-title">🌦️ WEATHER DETECTOR PRO MAX ULTRA</h1>
+
+                <blockquote class="hero-quote">
+                    “We detect weather so you don't have to.”
+                </blockquote>
+
+                <!-- INPUT BOX -->
+                <div class="input-card">
+                    <label for="locationInput" class="input-label">
+                        Enter location, emotional state, or postal code:
+                    </label>
+                    <div class="input-field-wrapper">
+                        <span class="input-icon">📍</span>
+                        <input type="text" id="locationInput" class="giant-input"
+                            placeholder="e.g. Mumbai, Mars, my backyard, existential dread" autocomplete="off" />
+                        <button class="clear-btn" id="clearInputBtn" title="Clear input">×</button>
+                    </div>
+
+                    <!-- FUN QUICK CHIPS -->
+                    <div class="preset-chips">
+                        <span class="chips-label">Quick Queries:</span>
+                        <button class="chip-btn" data-val="Mumbai">Mumbai</button>
+                        <button class="chip-btn" data-val="Mars">Mars</button>
+                        <button class="chip-btn" data-val="my backyard">my backyard</button>
+                        <button class="chip-btn" data-val="existential dread">existential dread</button>
+                        <button class="chip-btn" data-val="What will the weather be tomorrow?">Tomorrow?</button>
+                        <button class="chip-btn" data-val="Under my bed">Under my bed</button>
+                        <button class="chip-btn" data-val="Paris, Texas">Paris, TX</button>
+                    </div>
+
+                    <!-- PRIMARY ACTION BUTTONS -->
+                    <div class="action-buttons-group">
+                        <button class="btn-hero btn-detect" id="detectWeatherBtn">
+                            <span class="btn-icon">⚡</span>
+                            <span class="btn-text">DETECT WEATHER</span>
+                        </button>
+
+                        <button class="btn-hero btn-ask-sky" id="askSkyBtn">
+                            <span class="btn-icon">🌌</span>
+                            <span class="btn-text">ASK THE SKY</span>
+                        </button>
+
+                        <button class="btn-hero btn-panic" id="panicBtn">
+                            <span class="btn-icon">🚨</span>
+                            <span class="btn-text" id="panicBtnText">PANIC</span>
+                        </button>
+                    </div>
+
+                    <div class="input-subnote">
+                        ⚠️ By clicking any button, you agree that weather is a non-binding atmospheric suggestion.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOADING ANIMATION CONTAINER (Unnecessarily long) -->
+        <section class="loading-section" id="loadingSection" style="display: none;">
+            <div class="loading-card">
+                <div class="loading-cloud-animation">
+                    <div class="bouncing-cloud">☁️</div>
+                    <div class="loading-sparks">✨</div>
+                    <div class="loading-tornado">🌪️</div>
+                </div>
+                <h2 class="loading-title" id="loadingStageTitle">Initiating Atmospheric Interrogation...</h2>
+                <p class="loading-subtitle" id="loadingStageSub">Please remain seated and do not breathe directly at the
+                    screen.</p>
+
+                <div class="custom-progress-track">
+                    <div class="custom-progress-bar" id="customProgressBar"></div>
+                </div>
+
+                <div class="loading-meta-steps">
+                    <span id="loadingPercent">0%</span>
+                    <span id="loadingStatusText">Consulting low-altitude pigeons...</span>
+                </div>
+
+                <div class="loading-spinner-ticker" id="loadingTicker">
+                    🛰️ Pinging satellites • ☕ Heating intern's tea • 🧪 Measuring dampness
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN WEATHER RESULT SECTION -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+
+            <!-- COMPLETION BANNER -->
+            <div class="result-banner">
+                <div class="banner-badge">
+                    <span class="check-icon">✅</span>
+                    <span class="banner-title">WEATHER DETECTION COMPLETE ✅</span>
+                </div>
+                <div class="interpreted-tag" id="interpretedLocationTag">
+                    Location parsed as: <strong>"Bermuda Triangle of Emotion"</strong> (Match Quality: 11.4%)
+                </div>
+            </div>
+
+            <!-- PRIMARY LARGE OUTCOME -->
+            <div class="primary-result-box">
+                <div class="result-glow"></div>
+                <div class="result-content">
+                    <h2 class="large-result-headline" id="mainResultHeadline">
+                        Tomorrow's weather cannot be detected at this time because the weather is currently having
+                        dinner at your location.
+                    </h2>
+                    <p class="result-subtext" id="mainResultSubtext">
+                        “We attempted to contact it. It left us on read.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- UNRELATED STATISTICS GRID -->
+            <div class="stats-section-container">
+                <div class="section-badge-header">
+                    <h3>📊 Tomorrow's Weather (Unrelated Statistics Division)</h3>
+                    <span class="tag-unverified">CONFIDENTIAL & SPECULATIVE</span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">🌡️</span>
+                            <span class="stat-name">Temperature</span>
+                        </div>
+                        <div class="stat-value" id="valTemperature">probably</div>
+                        <div class="stat-caption">Tolerance: ±100% margin</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">💧</span>
+                            <span class="stat-name">Humidity</span>
+                        </div>
+                        <div class="stat-value" id="valHumidity">moist-ish</div>
+                        <div class="stat-caption">Similar to a damp sponge</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">💨</span>
+                            <span class="stat-name">Wind</span>
+                        </div>
+                        <div class="stat-value" id="valWind">moving</div>
+                        <div class="stat-caption">Kinetic air phenomena</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">👁️</span>
+                            <span class="stat-name">Visibility</span>
+                        </div>
+                        <div class="stat-value" id="valVisibility">you'll know when you see it</div>
+                        <div class="stat-caption">Subjective optical event</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">🌧️</span>
+                            <span class="stat-name">Chance of rain</span>
+                        </div>
+                        <div class="stat-value" id="valRain">financially complicated</div>
+                        <div class="stat-caption">Consulting cloud accountant</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-icon">☀️</span>
+                            <span class="stat-name">UV Index</span>
+                        </div>
+                        <div class="stat-value" id="valUV">UV</div>
+                        <div class="stat-caption">Standard ultraviolet letterform</div>
+                    </div>
+
+                    <div class="stat-card stat-card-wide">
+                        <div class="stat-header">
+                            <span class="stat-icon">🎲</span>
+                            <span class="stat-name">Weather confidence</span>
+                        </div>
+                        <div class="stat-value highlight-val" id="valConfidence">42% confident that weather exists</div>
+                        <div class="stat-caption">Remaining 58% attributed to mass hysteria and collective
+                            hallucinations</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVELY CONTRADICTORY SECTION -->
+            <div class="contradictory-container">
+                <div class="section-badge-header">
+                    <h3>⚡ SIMULTANEOUS ATMOSPHERIC MULTI-STREAM</h3>
+                    <button class="btn-refresh-atmo" id="refreshAtmoBtn">
+                        🔄 Refresh Analysis (Manipulate Sky)
+                    </button>
+                </div>
+
+                <div class="contradictory-cards-row">
+                    <div class="contradict-card sunny-side">
+                        <div class="contradict-icon">🌞</div>
+                        <div class="contradict-title">CURRENT ANALYSIS</div>
+                        <div class="contradict-reading">Sunny</div>
+                        <div class="contradict-detail">
+                            Blinding luminescence observed through window blinds. Sunscreen advised for indoors.
+                        </div>
+                    </div>
+
+                    <div class="contradict-card wet-side">
+                        <div class="contradict-icon">☔</div>
+                        <div class="contradict-title">ADDITIONAL ANALYSIS</div>
+                        <div class="contradict-reading">Extremely wet</div>
+                        <div class="contradict-detail">
+                            High concentration of aqueous droplets. Submarine recommended for light errands.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="disclaimer-bubble">
+                    <p class="disclaimer-text">
+                        “Both results are scientifically valid according to our proprietary methodology.”
+                    </p>
+                    <div class="refresh-feedback" id="refreshFeedbackText" style="display:none;"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- AI WEATHER INSIGHT BOX -->
+        <section class="ai-insight-section">
+            <div class="ai-insight-card">
+                <div class="ai-badge-row">
+                    <span class="sparkle-ai">✨</span>
+                    <span class="ai-title">AI WEATHER INSIGHT</span>
+                    <span class="ai-model-pill">GPT-VIBES-PRO</span>
+                    <button class="btn-tiny" id="reGenAiInsight">Re-Hallucinate</button>
+                </div>
+                <blockquote class="ai-quote" id="aiInsightQuote">
+                    “The weather appears to be influenced by atmospheric conditions.”
+                </blockquote>
+                <div class="ai-meta">
+                    <span>Parameters: 450 Billion Guesses</span>
+                    <span>•</span>
+                    <span>GPU Carbon Footprint: Comparable to a kettle</span>
+                    <span>•</span>
+                    <span>Hallucination Certainty: 99.98%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANCED METEOROLOGICAL TOOLS -->
+        <section class="tools-section">
+            <div class="tools-header">
+                <h2 class="section-title">🛠️ ADVANCED METEOROLOGICAL TOOLS</h2>
+                <p class="section-desc">Pioneering useless instruments developed by our unpaid apprentice team.</p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- 1. CLOUD OPINION -->
+                <div class="tool-card" id="toolCloudCard">
+                    <div class="tool-icon">☁️</div>
+                    <h3 class="tool-name">Cloud Opinion</h3>
+                    <p class="tool-status" id="cloudOpinionText">
+                        “This cloud seems emotionally unavailable.”
+                    </p>
+                    <button class="tool-btn" id="askCloudBtn">
+                        <span>ASK CLOUD</span>
+                    </button>
+                    <div class="tool-footnote" id="cloudResponseLog"></div>
+                </div>
+
+                <!-- 2. TEMPERATURE VIBES -->
+                <div class="tool-card" id="toolTempCard">
+                    <div class="tool-icon">🌡️</div>
+                    <h3 class="tool-name">Temperature Vibes</h3>
+                    <p class="tool-status" id="tempVibesText">
+                        “The temperature is approximately the temperature.”
+                    </p>
+                    <button class="tool-btn" id="calibrateTempBtn">
+                        <span>CALIBRATE</span>
+                    </button>
+                    <div class="tool-footnote" id="tempCalibrateLog">Screen warmth: Normal</div>
+                </div>
+
+                <!-- 3. WIND DIRECTION -->
+                <div class="tool-card" id="toolWindCard">
+                    <div class="tool-icon">🌬️</div>
+                    <h3 class="tool-name">Wind Direction</h3>
+                    <p class="tool-status" id="windLocateText">
+                        “Wind is coming from somewhere.”
+                    </p>
+                    <div class="compass-mini" id="compassMini">
+                        <div class="compass-needle" id="compassNeedle">⬆️</div>
+                    </div>
+                    <button class="tool-btn" id="locateWindBtn">
+                        <span>LOCATE WIND</span>
+                    </button>
+                    <div class="tool-footnote" id="windResultLog"></div>
+                </div>
+
+                <!-- 4. RAIN DETECTOR -->
+                <div class="tool-card" id="toolRainCard">
+                    <div class="tool-icon">🌧️</div>
+                    <h3 class="tool-name">Rain Detector</h3>
+                    <p class="tool-status" id="rainDetectorText">
+                        Status: Standby. Awaiting precipitation interrogation.
+                    </p>
+                    <button class="tool-btn btn-rain-ask" id="isItRainingBtn">
+                        <span>IS IT RAINING?</span>
+                    </button>
+                    <div class="tool-footnote" id="rainResponseLog">Interrogations conducted: 0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPLETELY USELESS INTERACTIVE MAP -->
+        <section class="map-section">
+            <div class="map-header-row">
+                <div>
+                    <h2 class="section-title">🗺️ GLOBAL ATMOSPHERIC MISORIENTATION MAP</h2>
+                    <p class="section-desc">High-precision geolocation powered by pure speculation and vague
+                        impressions.</p>
+                </div>
+                <div class="map-accuracy-wrapper">
+                    <div class="accuracy-badge" id="mapAccuracyBadge" tabindex="0">
+                        <span>Map accuracy: 61%</span>
+                        <span class="info-mark">ℹ️</span>
+                        <div class="accuracy-tooltip">“We have chosen not to elaborate.”</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container-box">
+                <!-- MAP CONTROLS -->
+                <div class="map-controls-bar">
+                    <button class="map-btn" id="mapZoomInBtn">➕ Zoom In</button>
+                    <button class="map-btn" id="mapZoomOutBtn">➖ Zoom Out</button>
+                    <button class="map-btn" id="mapCenterBtn">🎯 Re-Center Map</button>
+                    <button class="map-btn" id="mapOceanBtn">🌊 Teleport to Ocean</button>
+                    <span class="map-coord-display" id="mapCoords">LAT: 42.0000° N • LON: 69.4200° W • VIBE:
+                        Moist</span>
+                </div>
+
+                <!-- RADAR & CANVAS MAP -->
+                <div class="canvas-map-wrapper" id="canvasMapWrapper">
+                    <canvas id="weatherMapCanvas" width="900" height="420"></canvas>
+
+                    <div class="radar-scan-line"></div>
+
+                    <!-- ABSURD CLICKABLE PINS -->
+                    <div class="map-pin pin-user" id="pinUser" style="top: 48%; left: 45%;">
+                        <div class="pin-marker">📍</div>
+                        <div class="pin-label">YOU ARE SOMEWHERE AROUND HERE</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 25%; left: 22%;" data-title="Probably a road"
+                        data-desc="Asphalt observed, or maybe a very long black rug.">
+                        <div class="poi-dot">🛣️</div>
+                        <div class="poi-label">Probably a road</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 18%; left: 70%;" data-title="Suspicious cloud"
+                        data-desc="This cloud has been hovering without a valid permit.">
+                        <div class="poi-dot">☁️</div>
+                        <div class="poi-label">Suspicious cloud</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 70%; left: 35%;" data-title="Weather occurring"
+                        data-desc="Atmospheric events are reportedly taking place right now.">
+                        <div class="poi-dot">⚡</div>
+                        <div class="poi-label">Weather occurring</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 65%; left: 78%;" data-title="That one tree"
+                        data-desc="Leaves are rustling with suspicious velocity.">
+                        <div class="poi-dot">🌳</div>
+                        <div class="poi-label">That one tree</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 38%; left: 82%;" data-title="Unverified atmosphere"
+                        data-desc="We have sent no agents to confirm air exists in this quadrant.">
+                        <div class="poi-dot">❓</div>
+                        <div class="poi-label">Unverified atmosphere</div>
+                    </div>
+
+                    <div class="map-pin pin-poi" style="top: 80%; left: 15%;"
+                        data-title="Area where something happened once"
+                        data-desc="Historical meteorology records state a breeze occurred in 1994.">
+                        <div class="poi-dot">📜</div>
+                        <div class="poi-label">Area where something happened once</div>
+                    </div>
+                </div>
+
+                <!-- POI MODAL / POPUP INFO -->
+                <div class="map-poi-banner" id="mapPoiBanner" style="display: none;">
+                    <div class="poi-banner-content">
+                        <strong id="poiBannerTitle">Selected Locus</strong>:
+                        <span id="poiBannerDesc">Description</span>
+                    </div>
+                    <button class="btn-micro" id="closePoiBanner">Dismiss</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOURLY FORECAST -->
+        <section class="forecast-section">
+            <div class="section-badge-header">
+                <h2 class="section-title">⏱️ HOURLY FORECAST (CHRONOLOGICAL GUESSWORK)</h2>
+                <span class="tag-unverified">UNAUDITED METRICS</span>
+            </div>
+            <p class="section-desc">Micro-temporal meteorological projections rendered in 60-minute increments of pure
+                delusion.</p>
+
+            <div class="hourly-scroll-container">
+                <div class="hourly-cards-track">
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">12 PM</div>
+                        <div class="hourly-icon">🌤️</div>
+                        <div class="hourly-state">Weather</div>
+                        <div class="hourly-sub">Standard air</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">1 PM</div>
+                        <div class="hourly-icon">🌦️</div>
+                        <div class="hourly-state">More weather</div>
+                        <div class="hourly-sub">Additional sky</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">2 PM</div>
+                        <div class="hourly-icon">🏃💨</div>
+                        <div class="hourly-state">Weather-related activity</div>
+                        <div class="hourly-sub">Leaves moving</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">3 PM</div>
+                        <div class="hourly-icon">❓</div>
+                        <div class="hourly-state">Unknown</div>
+                        <div class="hourly-sub">Sensor napping</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">4 PM</div>
+                        <div class="hourly-icon">🌌</div>
+                        <div class="hourly-state">Sky</div>
+                        <div class="hourly-sub">It is blue-ish</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">5 PM</div>
+                        <div class="hourly-icon">🤨</div>
+                        <div class="hourly-state">Suspicious</div>
+                        <div class="hourly-sub">Trust nobody</div>
+                    </div>
+
+                    <div class="hourly-card error-card">
+                        <div class="hourly-time">6 PM</div>
+                        <div class="hourly-icon">💥</div>
+                        <div class="hourly-state">Weather.exe stopped responding</div>
+                        <div class="hourly-sub">Task terminated</div>
+                    </div>
+
+                    <div class="hourly-card">
+                        <div class="hourly-time">7 PM</div>
+                        <div class="hourly-icon">🗣️</div>
+                        <div class="hourly-state">Ask your neighbors</div>
+                        <div class="hourly-sub">Look outside window</div>
+                    </div>
+
+                    <div class="hourly-card midnight-card">
+                        <div class="hourly-time">12 AM (Midnight)</div>
+                        <div class="hourly-icon">⏳</div>
+                        <div class="hourly-state">“Tomorrow begins approximately tomorrow.”</div>
+                        <div class="hourly-sub">TBD by dawn</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 7-DAY FORECAST -->
+        <section class="forecast-section">
+            <div class="section-badge-header">
+                <h2 class="section-title">📅 7-DAY PROBABILISTIC CALENDAR</h2>
+                <button class="btn-more-accurate" id="moreAccurateBtn">
+                    SHOW MORE ACCURATE FORECAST
+                </button>
+            </div>
+
+            <div class="seven-day-grid">
+                <div class="day-card">
+                    <div class="day-name">MONDAY</div>
+                    <div class="day-icon">🌫️</div>
+                    <div class="day-vibe">Something atmospheric</div>
+                    <div class="day-detail">Air present throughout daytime hours.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">TUESDAY</div>
+                    <div class="day-icon">📅</div>
+                    <div class="day-vibe">Tuesday detected</div>
+                    <div class="day-detail">Calendrical conditions strongly indicate Tuesday.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">WEDNESDAY</div>
+                    <div class="day-icon">⏳</div>
+                    <div class="day-vibe">Weather pending</div>
+                    <div class="day-detail">Application for weather currently in review by clerk.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">THURSDAY</div>
+                    <div class="day-icon">⛅</div>
+                    <div class="day-vibe">Clouds may be involved</div>
+                    <div class="day-detail">Cumulus syndicate requested meeting with sun.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">FRIDAY</div>
+                    <div class="day-icon">🎉</div>
+                    <div class="day-vibe">87% chance of Friday</div>
+                    <div class="day-detail">13% probability of premature Thursday encore.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">SATURDAY</div>
+                    <div class="day-icon">🏖️</div>
+                    <div class="day-vibe">Weekend conditions detected</div>
+                    <div class="day-detail">Heavy leisure front approaching rapidly.</div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-name">SUNDAY</div>
+                    <div class="day-icon">🕊️</div>
+                    <div class="day-vibe">Please consult Sunday</div>
+                    <div class="day-detail">Sunday operates strictly on an unlisted telephone number.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERROR MESSAGES DEMO / TEST LAB -->
+        <section class="error-lab-section">
+            <div class="section-badge-header">
+                <h2 class="section-title">🚨 PROTOCOL DIAGNOSTIC ERRORS</h2>
+                <span class="tag-unverified">SYSTEM FAILURE SIMULATOR</span>
+            </div>
+            <p class="section-desc">
+                Experience state-of-the-art catastrophic failure messages manufactured by our quality avoidance
+                department.
+            </p>
+
+            <div class="error-buttons-rack">
+                <button class="err-btn" data-err="404">Trigger 404</button>
+                <button class="err-btn" data-err="418">Trigger 418 Teapot</button>
+                <button class="err-btn" data-err="503">Trigger 503 Sky</button>
+                <button class="err-btn" data-err="9001">Trigger 9001 Overflow</button>
+                <button class="err-btn" data-err="12">Trigger Error 12 Memory</button>
+                <button class="err-btn" data-err="optimism">Trigger Error: Going Well</button>
+            </div>
+
+            <!-- ERROR MODAL POPUP -->
+            <div class="error-banner-display" id="errorBannerDisplay" style="display: none;">
+                <div class="err-icon-box">❌</div>
+                <div class="err-text-col">
+                    <h4 id="errorTitle">Error 404: Weather went outside.</h4>
+                    <p id="errorSubtitle">We searched the indoor cloud chamber and found only an old radiator.</p>
+                </div>
+                <button class="btn-micro" id="dismissErrBtn">Acknowledge Incompetence</button>
+            </div>
+        </section>
+
+        <!-- SCHOOL PROJECT & CORPORATE CREDIBILITY BANNER -->
+        <section class="school-project-banner">
+            <div class="tape-strip"></div>
+            <div class="school-project-inner">
+                <span class="school-stamp">🏫 8TH GRADE SCIENCE FAIR HONORABLE MENTION</span>
+                <p>
+                    <em>Project Title:</em> <strong>"Is Weather Real or Did My Uncle Make It Up To Sell
+                        Umbrellas?"</strong><br>
+                    <em>By:</em> Kevin (Period 4 Earth Science) • <em>Grade:</em> C- (“Needs more real weather data”) •
+                    <em>Status:</em> Acquired by venture capital for $42M.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SKY DIALOG MODAL (When "ASK THE SKY" is clicked) -->
+    <div class="modal-backdrop" id="skyModalBackdrop" style="display: none;">
+        <div class="sky-modal">
+            <div class="modal-header">
+                <h3>🌌 SKY CONSULTATION CHAMBER</h3>
+                <button class="close-x" id="closeSkyModal">×</button>
+            </div>
+            <div class="sky-modal-body">
+                <div class="sky-avatar">⛅👁️⛅</div>
+                <h4 id="skyVerdict">The sky has reviewed your search history and is judging you silently.</h4>
+                <p id="skyElaboration">
+                    “I have provided oxygen to humanity for billions of years, and this is what you use my bandwidth
+                    for?”
+                </p>
+                <div class="sky-options">
+                    <button class="btn-hero" id="apologizeSkyBtn">Apologize to Atmosphere</button>
+                    <button class="btn-hero btn-panic" id="bribeSkyBtn">Offer Sky a $5 Coffee</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- "NO." ACCURACY MODAL -->
+    <div class="modal-backdrop" id="accuracyModalBackdrop" style="display: none;">
+        <div class="accuracy-modal">
+            <div class="giant-no-text">No.</div>
+            <p class="accuracy-modal-sub">
+                You requested higher accuracy. We evaluated your request and respectfully decided against it.
+            </p>
+            <p class="accuracy-modal-tier">
+                * Accuracies exceeding 61% are reserved exclusively for our <strong>Titanium Enterprise Sky™</strong>
+                subscription ($49,999/month, billed annually).
+            </p>
+            <button class="btn-hero" id="closeAccuracyModal">I Understand and Apologize</button>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal-backdrop" id="settingsModalBackdrop" style="display: none;">
+        <div class="settings-modal">
+            <div class="modal-header">
+                <h3>⚙️ ABSURD CONFIGURATION CONSOLE</h3>
+                <button class="close-x" id="closeSettingsModal">×</button>
+            </div>
+            <div class="settings-modal-body">
+
+                <!-- SETTING 1: Weather Sensitivity -->
+                <div class="setting-item">
+                    <label class="setting-label">Weather Sensitivity</label>
+                    <div class="radio-pill-group" id="settingSensitivity">
+                        <label><input type="radio" name="sensitivity" value="low"> Low</label>
+                        <label><input type="radio" name="sensitivity" value="med"> Medium</label>
+                        <label><input type="radio" name="sensitivity" value="high" checked> High</label>
+                        <label><input type="radio" name="sensitivity" value="paranormal"> Paranormal 👻</label>
+                    </div>
+                </div>
+
+                <!-- SETTING 2: Cloud Detection -->
+                <div class="setting-item">
+                    <label class="setting-label">Cloud Detection</label>
+                    <div class="radio-pill-group" id="settingCloudDetect">
+                        <label><input type="radio" name="cloudDetect" value="on"> On</label>
+                        <label><input type="radio" name="cloudDetect" value="off"> Off</label>
+                        <label><input type="radio" name="cloudDetect" value="ask" checked> Ask permission from
+                            cloud</label>
+                    </div>
+                </div>
+
+                <!-- SETTING 3: Accuracy Mode -->
+                <div class="setting-item">
+                    <label class="setting-label">Accuracy Mode</label>
+                    <div class="radio-pill-group" id="settingAccuracy">
+                        <label><input type="radio" name="accuracy" value="normal"> Normal</label>
+                        <label><input type="radio" name="accuracy" value="questionable" checked> Questionable</label>
+                        <label><input type="radio" name="accuracy" value="dontask"> Don't ask</label>
+                    </div>
+                </div>
+
+                <!-- SETTING 4: Location Services -->
+                <div class="setting-item">
+                    <label class="setting-label">Location Services</label>
+                    <div class="radio-pill-group" id="settingLocation">
+                        <label><input type="radio" name="locService" value="precise"> Precise</label>
+                        <label><input type="radio" name="locService" value="approx"> Approximate</label>
+                        <label><input type="radio" name="locService" value="spiritual" checked> Spiritually
+                            approximate</label>
+                    </div>
+                </div>
+
+                <!-- SETTING 5: Units -->
+                <div class="setting-item">
+                    <label class="setting-label">Units</label>
+                    <div class="radio-pill-group" id="settingUnits">
+                        <label><input type="radio" name="units" value="celsius"> Celsius (°C)</label>
+                        <label><input type="radio" name="units" value="fahrenheit"> Fahrenheit (°F)</label>
+                        <label><input type="radio" name="units" value="vibes" checked> Vibes ✨</label>
+                    </div>
+                    <div class="setting-preview" id="unitVibePreview">Current preview: Temperature: kinda warm</div>
+                </div>
+
+            </div>
+            <div class="settings-modal-footer">
+                <button class="btn-micro" id="resetWorseDefaultsBtn">Reset to Worse Defaults</button>
+                <button class="btn-hero" id="saveSettingsBtn">Save (Does Nothing)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANIC OVERLAY (Subtle comedy effect) -->
+    <div class="panic-flash-screen" id="panicFlashScreen"></div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo">🌦️ Weathern't™</span>
+                <span class="footer-tagline">The Non-Functional Atmosphere Initiative</span>
+            </div>
+
+            <p class="footer-legal">
+                <em>We are not responsible for weather, weather-related weather, or consequences resulting from
+                    believing anything displayed above.</em>
+            </p>
+
+            <div class="footer-timestamp">
+                <strong>Last updated: 3 minutes from now</strong>
+            </div>
+
+            <div class="footer-sub-links">
+                <span>Form 1040-WX Filed</span>
+                <span>•</span>
+                <span>Terms of Delusion</span>
+                <span>•</span>
+                <span>Cookie Policy: Soggy</span>
+                <span>•</span>
+                <span>Complaints Dept: Out of Office</span>
+            </div>
+
+            <div class="footer-copyright">
+                © 2026 Weathern't™ Technologies Inc. All rights reserved. Do not attempt to replicate weather at home.
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
